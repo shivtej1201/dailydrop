@@ -5,6 +5,7 @@ import cookieParser from "cookie-parser";
 import morgan from "morgan";
 import helmet from "helmet";
 import connectDB from "./config/connectDB.js";
+import userRouter from "./route/user.route.js";
 
 dotenv.config();
 const app = express();
@@ -33,6 +34,8 @@ app.get("/", (req, res) => {
     message: "Hello from the server!" + PORT,
   });
 });
+
+app.use("/api/user", userRouter);
 
 connectDB().then(() => {
   app.listen(PORT, () => {
