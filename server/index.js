@@ -44,3 +44,4 @@ connectDB().then(() => {
 });
 
 // Password : xl5spVXYEErY0ZB2
+// mongodb+srv://shivatejsonawane3149:xl5spVXYEErY0ZB2@dailydropcluster.q50x2f5.mongodb.net/?retryWrites=true&w=majority&appName=dailydropcluster
