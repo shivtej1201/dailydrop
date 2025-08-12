@@ -1,8 +1,9 @@
 import React from "react";
 import logo from "../assets/DailyDrop_one.png";
 import Search from "./Search";
-import { Link, useLocation } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { FaUserCircle } from "react-icons/fa";
+import { TiShoppingCart } from "react-icons/ti";
 import useMobile from "../hooks/useMobile";
 
 const Header = () => {
@@ -12,11 +13,14 @@ const Header = () => {
 
   const isSearchPage = location.pathname === "/search";
 
-  console.log("isMobile", isMobile);
-  console.log("location", location);
-  console.log("isSearchPage", isSearchPage);
+  const navigate = useNavigate();
+
+  const redirectToLoginPage = () => {
+    navigate("/login");
+  };
+
   return (
-    <header className="h-24 lg:h-20 lg:shadow-md sticky top-0 bg-red-400 flex flex-col justify-center gap-1">
+    <header className="h-32 lg:h-20 lg:shadow-md sticky top-0 flex flex-col justify-center gap-1 bg-white">
       {!(isSearchPage && isMobile) && (
         <div className="container mx-auto flex items-center px-4 justify-between">
           {/* logo */}
@@ -45,10 +49,26 @@ const Header = () => {
 
           {/* Login/Cart */}
           <div>
+            {/* This for Mobile Part */}
             <button className="text-neutral-600 lg:hidden">
               <FaUserCircle size={35} />
             </button>
-            <div className="hidden lg:block">login</div>
+
+            {/* This for Desktop Part */}
+            <div className="hidden lg:flex items-center gap-10">
+              <button onClick={redirectToLoginPage} className="text-lg px-2">
+                Login
+              </button>
+
+              <button className="flex items-center gap-2 bg-secondary-200 hover:bg-secondary-100 px-3 py-3 rounded text-white">
+                <div className="animate-pulse">
+                  <TiShoppingCart size={25} />
+                </div>
+                <div className="font-semibold">
+                  <p>My cart</p>
+                </div>
+              </button>
+            </div>
           </div>
         </div>
       )}
